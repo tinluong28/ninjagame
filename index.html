@@ -27,8 +27,8 @@
           "url('asset/" + ninjaImage + ".png')";
       };
 
-      const movement = face => {
-        return (ninjaImage = face + ((count % 2) + 1));
+      const movement = direction => {
+        return (ninjaImage = direction + ((count % 2) + 1));
       };
       document.onkeydown = e => {
         count++;
@@ -38,22 +38,22 @@
         if (e.keyCode == 39 && leftValue < 1000) {
           // RIGHT
           leftValue += 30;
-          face = "right";
+          direction = "right";
         } else if (e.keyCode == 37 && leftValue > 400) {
           // LEFT
           leftValue -= 30;
-          face = "left";
+          direction = "left";
         } else if (e.keyCode == 40 && topValue < 300) {
           // DOWN
           topValue += 30;
-          face = "down";
+          direction = "down";
         } else if (e.keyCode == 38 && topValue > 140) {
           // TOP
           topValue -= 30;
-          face = "top";
+          direction = "top";
         }
 
-        movement(face);
+        movement(direction);
         update();
       };
     </script>
