@@ -1,0 +1,61 @@
+<html>
+  <body>
+    <div id="background" style="background: rgb(228, 213, 213)">
+      <div
+        id="character"
+        style="position:absolute; top:200px; left:450px; background-image: url('asset/down1.png'); width:59px; height:86px;"
+      ></div>
+      <div
+        id="grass"
+        style="position:absolute; top:50px; left:400px; background-image: url('asset/grass.jpg'); width:700px; height:100px;"
+      ></div>
+      <div
+        id="grass"
+        style="position:absolute; top:400px; left:400px; background-image: url('asset/grass.jpg'); width:700px; height:100px;"
+      ></div>
+    </div>
+    <script type="text/javascript">
+      const getByID = id => document.getElementById(id);
+      let leftValue = 450;
+      let topValue = 200;
+      let ninjaImage = "down1";
+      let count = 1;
+      const update = () => {
+        getByID("character").style.left = leftValue + "px";
+        getByID("character").style.top = topValue + "px";
+        getByID("character").style.background =
+          "url('asset/" + ninjaImage + ".png')";
+      };
+
+      const movement = face => {
+        return (ninjaImage = face + ((count % 2) + 1));
+      };
+      document.onkeydown = e => {
+        count++;
+        console.log(e.keyCode);
+        console.log("leftValue", leftValue, "topValue", topValue);
+
+        if (e.keyCode == 39 && leftValue < 1000) {
+          // RIGHT
+          leftValue += 30;
+          face = "right";
+        } else if (e.keyCode == 37 && leftValue > 400) {
+          // LEFT
+          leftValue -= 30;
+          face = "left";
+        } else if (e.keyCode == 40 && topValue < 300) {
+          // DOWN
+          topValue += 30;
+          face = "down";
+        } else if (e.keyCode == 38 && topValue > 140) {
+          // TOP
+          topValue -= 30;
+          face = "top";
+        }
+
+        movement(face);
+        update();
+      };
+    </script>
+  </body>
+</html>
